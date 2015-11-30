@@ -36,7 +36,7 @@ class usuariosControlador {
             }
         }
     }
-    
+
     public function listarUsuarios() {
         require_once '../Modelos/Usuarios.php';
         if (isset($_POST['btnConsultarUsuarios'])) {
@@ -46,11 +46,27 @@ class usuariosControlador {
                 session_start();
                 $_SESSION['mensaje'] = "No existen usuarios registrados en la base de datos";
                 header('Location: ../Vistas/Usuarios.php');
-            }else{
+            } else {
                 require '../Vistas/consultarUsuario.php';
             }
         }
     }
+
+    public function editarUsuario() {
+        require_once '../Modelos/Usuarios.php';
+        $this->modelo = new Usuarios();
+        $this->modelo->setIdUsuario($_POST['idUsuario']);
+        if (isset($_POST['btnEditarUsuario'])) {
+            $datos = $this->modelo->listarIdUsuario();
+            require_once '../vistas/editarUsuario.php';
+        } else {
+            $this->modelo->editarUsuario();
+            session_start();
+            $_SESSION['mensaje'] = "Se edito usuario correctamente";
+            header('Location: ../Vistas/Usuarios.php');
+        }
+    }
+
 }
 
 $usuario = new usuariosControlador();
