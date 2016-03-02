@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /sismed/
+    RewriteCond %{REQUEST_URI} !\.(?:css|js|jpe?g|gif|png|eot|svg|ttf|woff|woff2)$ [NC]
+    Rewriterule ^(.+)/(.+)$ index.php?controlador=$1&metodo=$2
+</IfModule>
+
+<IfModule !mod_rewrite.c>
+    ErrorDocument 404 /index.php
+</IfModule>

@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <a href="Vistas/Usuarios.php">Usuarios</a>
-    </body>
-</html>
+<?php
+// error_reporting(0);
+require 'Nucleo/Controlador.php';
+Controlador::principal();

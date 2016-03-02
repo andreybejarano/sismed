@@ -1,0 +1,43 @@
+@font-face{
+    font-family: "Josefin";
+    src:url('../fonts/Josefin/JosefinSans-SemiBold.ttf');
+    font-family: "Orbitron";
+    src:url('../fonts/Orbitron/Orbitron-Bold.ttf');
+
+}
+
+body{
+    background: url('../img/background.png');
+}
+.fondoblack{
+    background: url('../img/fondoMenu.png');
+}
+.fondoFluid{
+	background: url('../img/background.png');
+}
+#navLateral>li>a{
+    color:#C6C1C1;
+    font-size: 12px;
+    line-height: 2em;
+
+}
+.letraTitulos{
+    font-family: 'Orbitron', sans-serif;
+}
+.letraForms{
+    font-family: 'Josefin', sans-serif;
+}
+.menu li>a:hover{
+	margin-left: .1em;
+	color: black;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+}
+[placeholder]:focus::-webkit-input-placeholder {
+  transition: all 0.2s linear;
+  transform: translate(10px, 0);
+  opacity: 0;
+}
