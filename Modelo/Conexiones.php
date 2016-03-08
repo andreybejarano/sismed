@@ -20,6 +20,7 @@ class Conexiones {
 
         try {
             $this->conexion = new PDO($dsn, $usuario, $contrasena);
+            $this->conexion->exec("SET CHARACTER SET utf8");
         } catch (PDOException $e) {
             exit('Error al conectar a la base de datos: ' . $e->getMessage());
         }
