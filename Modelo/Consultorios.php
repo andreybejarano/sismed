@@ -11,8 +11,8 @@ class Consultorios {
     }
 
     public function insertarConsultorio() {
-        $sql = "INSERT INTO consultorios(idConsultorio, numeroConsultorio) "
-                . "VALUES (null, '{$this->getNumeroConsultorio()}');";
+        $sql = "INSERT INTO consultorios(idConsultorio, numeroConsultorio, centros_medicos_idCentroMedico) "
+                . "VALUES (null, '{$this->getNumeroConsultorio()}', 1);";
 
         return $this->conexion->consultaSimple($sql);
     }
