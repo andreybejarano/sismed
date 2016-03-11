@@ -9,58 +9,58 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     <div class="container-fluid fondoFluid" id="formArea">
         <!-- encabezado wrapper -->
         <?php Vista::mostrar('plantillas/_eslogan') ?>
-        <form method="POST" action="<?php echo URL_BASE . 'beneficiarios/editarBeneficiario'; ?>">
+        <form method="POST" action="<?php echo URL_BASE . 'citasMedicas/editarCitasMedica'; ?>">
             <div class="form-group">
-                <label for="txfIdentificacionBeneficiario">Numero de Documento</label>
-                <input type="text" id="txfIdentificacionBeneficiario" name="txfIdentificacionBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['numeroIdentificacionBeneficiario']; ?>">
+                <label for="txfIdentificacionCitasMedica">Numero de Documento</label>
+                <input type="text" id="txfIdentificacionCitasMedica" name="txfIdentificacionCitasMedica" class="form-control" value="<?php echo $citaMedica[0]['numeroIdentificacionCitasMedica']; ?>">
             </div>
             <div class="form-group">
                 <label for="cmbTipoDocumento">Tipo Documento</label>
                 <select class="form-control" name="cmbTipoDocumento" id="cmbTipoDocumento" required>
-                    <option value="<?php echo $beneficiario[0]['tipos_documentos_idTipoDocumento']; ?>"><?php echo $beneficiario[0]['tipoDocumento']; ?></option>
+                    <option value="<?php echo $citaMedica[0]['tipos_documentos_idTipoDocumento']; ?>"><?php echo $citaMedica[0]['tipoDocumento']; ?></option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="txfNombresBeneficiario">Nombres</label>
-                <input type="text" id="txfNombresBeneficiario" name="txfNombresBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['nombresBeneficiario']; ?>">
+                <label for="txfNombresCitasMedica">Nombres</label>
+                <input type="text" id="txfNombresCitasMedica" name="txfNombresCitasMedica" class="form-control" value="<?php echo $citaMedica[0]['nombresCitasMedica']; ?>">
             </div>
             <div class="form-group">
-                <label for="txfApellidosBeneficiario">Apellidos</label>
-                <input type="text" id="txfApellidosBeneficiario" name="txfApellidosBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['apellidosBeneficiario']; ?>">
+                <label for="txfApellidosCitasMedica">Apellidos</label>
+                <input type="text" id="txfApellidosCitasMedica" name="txfApellidosCitasMedica" class="form-control" value="<?php echo $citaMedica[0]['apellidosCitasMedica']; ?>">
             </div>
             <div class="form-group">
                 <label for="cmbGenero">Genero</label>
                 <select class="form-control" name="cmbGenero" id="cmbGenero" required>
-                    <option value="<?php echo $beneficiario[0]['generos_idGenero']; ?>"><?php echo $beneficiario[0]['tipoGenero']; ?></option>
+                    <option value="<?php echo $citaMedica[0]['generos_idGenero']; ?>"><?php echo $citaMedica[0]['tipoGenero']; ?></option>
                     <option value="1">Femenino</option>
                     <option value="2">Masculino</option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="txfFechaNacimientoBeneficiario">Fecha nacimiento</label>
-                <input type="text" id="txfFechaNacimientoBeneficiario" name="txfFechaNacimientoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['fechaNacimientoBeneficiario']; ?>">
+                <label for="txfFechaNacimientoCitasMedica">Fecha nacimiento</label>
+                <input type="text" id="txfFechaNacimientoCitasMedica" name="txfFechaNacimientoCitasMedica" class="form-control" value="<?php echo $citaMedica[0]['fechaNacimientoCitasMedica']; ?>">
             </div>
             <div class="form-group">
                 <label for="cmbIdFuncionario">Documento funcionario</label>
                 <select class="form-control" name="cmbIdFuncionario" id="cmbIdFuncionario" required>
-                    <option value="<?php echo $beneficiario[0]['funcionarios_idFuncionario']; ?>"><?php echo $beneficiario[0]['numeroIdentificacionFuncionario']; ?></option>
+                    <option value="<?php echo $citaMedica[0]['funcionarios_idFuncionario']; ?>"><?php echo $citaMedica[0]['numeroIdentificacionFuncionario']; ?></option>
                 </select>
             </div>
             <div class="form-group">
-                <label for="txfDireccionBeneficiario">Direccion</label>
-                <input type="text" id="txfDireccionBeneficiario" name="txfDireccionBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['direccionBeneficiario']; ?>">
+                <label for="txfDireccionCitasMedica">Direccion</label>
+                <input type="text" id="txfDireccionCitasMedica" name="txfDireccionCitasMedica" class="form-control" value="<?php echo $citaMedica[0]['direccionCitasMedica']; ?>">
             </div>
             <div class="form-group">
-                <label for="txfTelefonoBeneficiario">Telefono</label>
-                <input type="text" id="txfTelefonoBeneficiario" name="txfTelefonoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['telefonoBeneficiario']; ?>">
+                <label for="txfTelefonoCitasMedica">Telefono</label>
+                <input type="text" id="txfTelefonoCitasMedica" name="txfTelefonoCitasMedica" class="form-control" value="<?php echo $citaMedica[0]['telefonoCitasMedica']; ?>">
             </div>
             <div class="form-group">
-                <label for="txfMovilBeneficiario">Movil</label>
-                <input type="text" id="txfMovilBeneficiario" name="txfMovilBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['movilBeneficiario']; ?>">
+                <label for="txfMovilCitasMedica">Movil</label>
+                <input type="text" id="txfMovilCitasMedica" name="txfMovilCitasMedica" class="form-control" value="<?php echo $citaMedica[0]['movilCitasMedica']; ?>">
             </div>
             <div class="form-group">
-                <label for="txfCorreoBeneficiario">Correo electronico</label>
-                <input type="text" id="txfCorreoBeneficiario" name="txfCorreoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['correoBeneficiario']; ?>">
+                <label for="txfCorreoCitasMedica">Correo electronico</label>
+                <input type="text" id="txfCorreoCitasMedica" name="txfCorreoCitasMedica" class="form-control" value="<?php echo $citaMedica[0]['correoCitasMedica']; ?>">
             </div>
             <div class="form-group">
                 <label for="cmbCronico">Cronico</label>
@@ -70,16 +70,16 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 </select>
             </div>
             <div class="form-group">
-                <label for="cmbEstadoBeneficiario">Estado</label>
-                <select class="form-control" name="cmbEstadoBeneficiario" id="cmbEstadoBeneficiario">
+                <label for="cmbEstadoCitasMedica">Estado</label>
+                <select class="form-control" name="cmbEstadoCitasMedica" id="cmbEstadoCitasMedica">
                     <option value="1">Activo</option>
                     <option value="0">Inactivo</option>
                 </select>
             </div>
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
             <button class="btn btn-primary" name="btnContrasena" id="btnContrasena">CAMBIAR CONTRASEÑA</button> 
-            <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'beneficiarios/beneficiarios'; ?>">ATRAS</a></button>
-            <input type="hidden" name="idBeneficiario" value="<?php echo $beneficiario[0]['idBeneficiario']; ?>">
+            <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'citasMedicas/citasMedicas'; ?>">ATRAS</a></button>
+            <input type="hidden" name="idCitasMedica" value="<?php echo $citaMedica[0]['idCitasMedica']; ?>">
         </form>
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
