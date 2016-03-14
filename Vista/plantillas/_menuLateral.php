@@ -63,7 +63,7 @@
                     <a href="#">Citas medicas</a>
                 </li>
                 <li>
-                    <a href="#">Agendas medicas</a>
+                    <a href="<?php echo URL_BASE; ?>agendasMedicas/agenda">Agendas medicas</a>
                 </li>
             </ul>
         </li>
