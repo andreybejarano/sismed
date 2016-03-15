@@ -74,7 +74,7 @@
                     <a href="#">Consultar Historia C.</a>
                 </li>
                 <li>
-                    <a href="#">Enfermedades</a>
+                    <a href="<?php echo URL_BASE; ?>enfermedades/enfermedades">Enfermedades</a>
                 </li>
                 <li>
                     <a href="#">Examenes</a>

@@ -7,7 +7,7 @@
                 <h4 class="modal-title">Insertar centro de formacion</h4>
             </div>
             <div class="modal-body">
-                <form method="POST" action="<?php echo URL_BASE . 'CentrosFormacion/insertarCentroFormacion'; ?>">
+                <form method="POST" action="<?php echo URL_BASE . 'centrosFormacion/insertarCentroFormacion'; ?>">
                     <div class="form-group">
                         <label for="txfNombreCentroFormacion">Nombre </label>
                         <input type="text" id="txfNombreCentroFormacion" name="txfNombreCentroFormacion" class="form-control" placeholder="Nombre centro de formacion" required>
