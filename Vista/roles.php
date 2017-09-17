@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 
 <div id="page-wrapper" style=" min-height:30em ">
@@ -22,6 +22,24 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
             </div>
         </div>
+        <div class="row">
+            <div class="col-md-12">
+
+            <div class=" col-md-offset-3 col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <i class="fa fa-key fa-5x"></i>
+                            </div>
+                            <div class="col-xs-7 text-right">
+                               <div class="huge">Roles</div>
+                                <div>Modulo: Usuarios</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
         <div class="row" style="margin-top: 5%"></div>
 
@@ -29,7 +47,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Rol">
+                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Rol" maxlength="20">
                     <span class="input-group-btn">
                         <button class="btn btn-info" id="btnBuscar" type="button">Buscar</button>
                     </span>

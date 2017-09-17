@@ -39,7 +39,7 @@ class Cargos {
     }
     
     public function editarCargo() {
-        $sql = "UPDATE cargos SET descripcionCargo='{$this->getDescripcionCargo()}' "
+        $sql = "UPDATE cargos SET descripcionCargo ='{$this->getDescripcionCargo()}' "
         . "WHERE idCargo={$this->getIdCargo()}";
         
         return $this->conexion->consultaSimple($sql);

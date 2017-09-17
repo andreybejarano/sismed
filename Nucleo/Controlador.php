@@ -1,28 +1,16 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- * Description of Controlador
- *
- * @author Cristian Gómez
- */
 class Controlador {
 
     public static function principal() {
-
+        date_default_timezone_set('America/Bogota');
         //Invoco a las clases del Nucleo
         require 'Configuracion.php';
         require 'Modelo.php';
         require 'Vista.php';
 
         //Componemos el Nombre del Controlador
-        //http://localhost/atumesa/index.php?controlador=Bienvenido&metodo=principal
-        //http://localhost/atumesa/bienvenido/principal/2
+        //http://localhost/bienvenido/principal/2
         if (!empty($_GET['controlador']))
             $nombreControlador = $_GET['controlador'] . 'Controlador';
         else
@@ -51,5 +39,4 @@ class Controlador {
         $controlador = new $nombreControlador();
         $controlador->$nombreMetodo();
     }
-
 }

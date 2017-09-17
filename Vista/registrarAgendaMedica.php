@@ -13,16 +13,20 @@
                         <input type="text" name="txfFechaAgendaMedica" id="txfFechaAgendaMedica" class="form-control" placeholder="Fecha" value="" required>
                     </div>
                     <div class="form-group">
-                        <label for="cmbIdentificacionEmpleado">Identifiación Empleado</label>
-                        <select class="form-control" name="cmbIdentificacionEmpleado" id="cmbIdentificacionEmpleado" required>
-                            <option value="">Seleccione empleado</option>
+                        <label for="cmbIdentificacionEmpleado">Identifiación Medico</label>
+                        <select class="form-control" name="cmbIdentificacionEmpleado" id="cmbIdentificacionEmpleado" maxlength="20" required>
+                            <option value="">Seleccione medico</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="cmbConsultorio">Consultorio</label>
+                        <select class="form-control" name="cmbConsultorio" id="cmbConsultorio" maxlength="20" required>
+                            <option value="">Seleccione Consultorio</option>
                         </select>
                     </div>
                     <div id="divHoras">
-                        
-                        
                     </div>
-                <button type="submit" class="btn btn-primary" name="btnRegistrarAgendaMedica" id="btnRegistrarAgendaMedica"> Crear Agenda</button>
+                <button type="submit" class="btn btn-primary" name="btnRegistrarAgendaMedica" id="btnRegistrarAgendaMedica"> Crear Agenda </button>
                 </form>
             </div>
             <div class="modal-footer">
@@ -31,23 +35,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    
-    // Trae las horas de la tabla hora_20 de la BD
-    $.post('<?php echo URL_BASE; ?>horas/listarHoras', {}, function (data) {
-        var datos = JSON.parse(data);
-        var cont = 0;
-        $.each(datos, function (i, v) {
-            cont++;
-                $('#divHoras').append("<label><input type='checkbox' name='chk[]' value='"+v.idhora_20+"'/> "+v.hora+"  </label> ");
-        });
-    });
-    
-     $.post('<?php echo URL_BASE; ?>empleados/listarEmpleados', {}, function (data) {
-        var datos = JSON.parse(data);
-        $.each(datos, function (i, v) {
-            $('#cmbIdentificacionEmpleado').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + '</option>');
-        });
-    });
-</script>
-
+<script type="text/javascript" src="<?php echo URL_BASE; ?>Vista/js/registrarAgendaMedica.js"></script>

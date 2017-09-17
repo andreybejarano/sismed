@@ -1,9 +1,8 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
-
 
 <div id="page-wrapper" style=" min-height:30em ">
     <div class="container-fluid fondoFluid" id="formArea">
@@ -63,7 +62,3 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>
-<script type="text/javascript">
-
-</script>
-

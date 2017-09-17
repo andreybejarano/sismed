@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral'); 
 ?>
 
 <div id="page-wrapper" style=" min-height:30em ">
@@ -79,110 +79,6 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
-<script type="text/javascript">
-    $.post('<?php echo URL_BASE; ?>centrosFormacion/listarCentrosFormacion', {}, function (data) {
-        var datos = JSON.parse(data);
-        var filas;
-        var cont = 0;
-        $.each(datos, function (i, v) {
-            cont = cont + 1;
-            filas += "<tr>";
-            filas += "<td>" + v.nombreCentroFormacion + "</td>";
-            filas += "<td>" + v.sigla + "</td>";
-            filas += "<td>" + v.direccionCentroFormacion + "</td>";
-            filas += "<td>" + v.telefonoCentroFormacion + "</td>";
-            filas += "<td>" + v.nombreRegional + "</td>";
-            filas += "<td>" + v.nombreZona + "</td>";
-            filas += "<td>";
-            filas += "<form action='<?php echo URL_BASE; ?>centrosFormacion/editarCentroFormacion' method='POST'>";
-            filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarCentroFormacion'><i class='fa fa-edit'></i></button>";
-            filas += "<input type='hidden' name='idCentroFormacion' value='" + v.idCentroFormacion + "'>";
-            filas += "</form>";
-            filas += "</td>";
-            filas += "<td>";
-            filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarCentroFormacion" + cont + "' name='btnModalEliminarRol'><i class='fa fa-close'></i></button>";
-            filas += "<div class = 'modal fade' id='modalEliminarCentroFormacion" + cont + "' tabindex = '-1' role = 'dialog'>";
-            filas += "<div class='modal-dialog'>";
-            filas += "<div class='modal-content'>";
-            filas += "<div class='modal-header'>";
-            filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-            filas += "<h4 class='modal-title'>Eliminar CentroFormacion</h4>";
-            filas += "</div>";
-            filas += "<div class='modal-body'>";
-            filas += "<p>¿Seguro que desea eliminar registro?</p>";
-            filas += "</div>";
-            filas += "<div class='modal-footer'>";
-            filas += "<form action='<?php echo URL_BASE; ?>centrosFormacion/eliminarCentroFormacion' method='POST'>";
-            filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
-            filas += "<button class='btn btn-primary' type='submit' name='btnEliminarCentroFormacion'> Aceptar </button>";
-            filas += "<input type='hidden' name='idCentroFormacion' value='" + v.idCentroFormacion + "'>";
-            filas += "</form>";
-            filas += "</div>";
-            filas += "</div>";
-            filas += "</div>";
-            filas += "</div>";
-            filas += "</td>";
-            filas += "</tr>";
-        });
-        $('#tblCentrosFormacion tbody').html(filas);
-    });
-
-    $('#btnBuscar').click(function () {
-        var centroFormacion = $('#txtBuscar').val();
-        $.post('<?php echo URL_BASE; ?>centrosFormacion/listarNombreCentroFormacion', {centroFormacion: centroFormacion}, function (data) {
-            var datos = JSON.parse(data);
-            var filas;
-            cont = 0;
-            if (datos != false) {
-                $.each(datos, function (i, v) {
-                    cont = cont + 1;
-                    filas += "<tr>";
-                    filas += "<td>" + v.nombreCentroFormacion + "</td>";
-                    filas += "<td>" + v.sigla + "</td>";
-                    filas += "<td>" + v.direccionCentroFormacion + "</td>";
-                    filas += "<td>" + v.telefonoCentroFormacion + "</td>";
-                    filas += "<td>" + v.nombreRegional + "</td>";
-                    filas += "<td>" + v.nombreZona + "</td>";
-                    filas += "<td>";
-                    filas += "<form action='<?php echo URL_BASE; ?>centrosFormacion/editarCentroFormacion' method='POST'>";
-                    filas += "<button class='btn btn-xs btn-success' type='submit' name='btnEditarCentroFormacion'><i class='fa fa-edit'></i></button>";
-                    filas += "<input type='hidden' name='idCentroFormacion' value='" + v.idCentroFormacion + "'>";
-                    filas += "</form>";
-                    filas += "</td>";
-                    filas += "<td>";
-                    filas += "<button class='btn btn-xs btn-danger' data-toggle='modal' data-target='#modalEliminarCentroFormacion" + cont + "' name='btnModalEliminarRol'><i class='fa fa-close'></i></button>";
-                    filas += "<div class = 'modal fade' id='modalEliminarCentroFormacion" + cont + "' tabindex = '-1' role = 'dialog'>";
-                    filas += "<div class='modal-dialog'>";
-                    filas += "<div class='modal-content'>";
-                    filas += "<div class='modal-header'>";
-                    filas += "<button type='button' class='close' data-dismiss='modal' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
-                    filas += "<h4 class='modal-title'>Eliminar CentroFormacion</h4>";
-                    filas += "</div>";
-                    filas += "<div class='modal-body'>";
-                    filas += "<p>¿Seguro que desea eliminar registro?</p>";
-                    filas += "</div>";
-                    filas += "<div class='modal-footer'>";
-                    filas += "<form action='<?php echo URL_BASE; ?>centrosFormacion/eliminarCentroFormacion' method='POST'>";
-                    filas += "<button type='button' class='btn btn-default' data-dismiss='modal'>Cancelar</button>";
-                    filas += "<button class='btn btn-primary' type='submit' name='btnEliminarCentroFormacion'> Aceptar </button>";
-                    filas += "<input type='hidden' name='idCentroFormacion' value='" + v.idCentroFormacion + "'>";
-                    filas += "</form>";
-                    filas += "</div>";
-                    filas += "</div>";
-                    filas += "</div>";
-                    filas += "</div>";
-                    filas += "</td>";
-                    filas += "</tr>";
-                });
-            } else {
-                filas += "<tr>";
-                filas += "<td colspan='6'>No existe este Centro de formacion</td>";
-                filas += "</tr>";
-            }
-            $('#tblCentrosFormacion tbody').html(filas);
-        });
-    });
-</script>
-
+<script type="text/javascript" src="<?php echo URL_BASE; ?>Vista/js/centrosFormacion.js"></script>
 <?php Vista::mostrar('registrarCentroFormacion'); ?>
 

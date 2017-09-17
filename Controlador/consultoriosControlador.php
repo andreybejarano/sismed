@@ -19,15 +19,21 @@ class consultoriosControlador {
     }
 
     public function insertarConsultorio() {
-        $this->modelo->setNumeroConsultorio($_POST['txfNumeroConsultorio']);
-        $registro = $this->modelo->insertarConsultorio();
-        if ($registro) {
-            $datos['mensaje'] = "Consultorio insertado correctamente";
-        } else {
-            $datos['mensaje'] = "Error al insertar Consultorio";
+        if(!$_POST){
+            header("location: consultorios");
         }
-        $datos['titulo'] = "Consultorios";
-        Vista::mostrar('consultorios', $datos);
+        else{
+            $this->modelo->setNumeroConsultorio($_POST['txfNumeroConsultorio']);
+            $this->modelo->setIdCentroMedico($_POST['cmbCentroMedico']);
+            $registro = $this->modelo->insertarConsultorio();
+            if ($registro) {
+                $datos['mensaje'] = "Consultorio insertado correctamente";
+            } else {
+                $datos['mensaje'] = "Error al insertar Consultorio";
+            }
+            $datos['titulo'] = "Consultorios";
+            Vista::mostrar('consultorios', $datos);
+        }
     }
 
     public function listarConsultorios() {
@@ -35,33 +41,44 @@ class consultoriosControlador {
     }
 
     public function editarConsultorio() {
-        $datos['titulo'] = "Editar Consultorio";
-        $this->modelo->setIdConsultorio($_POST['idConsultorio']);
-        if (!isset($_POST['btnGuardar'])) {
-            $datos['consultorio'] = $this->modelo->listarIdConsultorio();
-            Vista::mostrar('editarConsultorio', $datos);
-        } else {
-            $this->modelo->setNumeroConsultorio($_POST['txfNumeroConsultorio']);
-            $registro = $this->modelo->editarConsultorio();
-            if ($registro) {
-                $datos['mensaje'] = "Registro actializado correctamente";
+        if(!$_POST){
+            header("location: consultorios");
+        }
+        else{
+            $datos['titulo'] = "Editar Consultorio";
+            $this->modelo->setIdConsultorio($_POST['idConsultorio']);
+            if (!isset($_POST['btnGuardar'])) {
+                $datos['consultorio'] = $this->modelo->listarIdConsultorio();
+                Vista::mostrar('editarConsultorio', $datos);
             } else {
-                $datos['mensaje'] = "Error al actualizar registro";
+                $this->modelo->setNumeroConsultorio($_POST['txfNumeroConsultorio']);
+                $this->modelo->setIdCentroMedico($_POST['cmbCentroMedico']);
+                $registro = $this->modelo->editarConsultorio();
+                if ($registro) {
+                    $datos['mensaje'] = "Registro actializado correctamente";
+                } else {
+                    $datos['mensaje'] = "Error al actualizar registro";
+                }
+                Vista::mostrar('consultorios', $datos);
             }
-            Vista::mostrar('consultorios', $datos);
         }
     }
 
     public function eliminarConsultorio() {
-        $this->modelo->setIdConsultorio($_POST['idConsultorio']);
-        $registro = $this->modelo->eliminarConsultorio();
-        if ($registro) {
-            $datos['mensaje'] = "Registro eliminado correctamente";
-        } else {
-            $datos['mensaje'] = "Error al eliminar registro";
+        if(!$_POST){
+            header("location: consultorios");
         }
-        $datos['titulo'] = "Consultorios";
-        Vista::mostrar('consultorios', $datos);
+        else{
+            $this->modelo->setIdConsultorio($_POST['idConsultorio']);
+            $registro = $this->modelo->eliminarConsultorio();
+            if ($registro) {
+                $datos['mensaje'] = "Registro eliminado correctamente";
+            } else {
+                $datos['mensaje'] = "Error al eliminar registro";
+            }
+            $datos['titulo'] = "Consultorios";
+            Vista::mostrar('consultorios', $datos);
+        }
     }
 
 }

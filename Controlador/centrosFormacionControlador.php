@@ -15,24 +15,29 @@ class centrosFormacionControlador {
 
     public function centrosFormacion() {
         $datos['titulo'] = "centros de formacion";
-
         Vista::mostrar('centrosFormacion', $datos);
     }
 
     public function insertarCentroFormacion() {
-        $this->modelo->setNombreCentroFormacion($_POST['txfNombreCentroFormacion']);
-        $this->modelo->setSigla($_POST['txfSigla']);
-        $this->modelo->setDireccionCentroFormacion($_POST['txfDireccionCentroFormacion']);
-        $this->modelo->setTelefonoCentroFormacion($_POST['txfTelefonoCentroFormacion']);
-        $this->modelo->setIdRegional($_POST['cmbRegionales']);
-        $registro = $this->modelo->insertarCentroFormacion();
-        if ($registro) {
-            $datos['mensaje'] = "Se registro centro de formacion correctamente";
-        } else {
-            $datos['mensaje'] = "Error al registrar centro de formacion";
+        if (!$_POST) {
+            header("location: centrosFormacion");
         }
-        $datos['titulo'] = "centros de formacion";
-        Vista::mostrar('centrosFormacion', $datos);
+        else {
+            $this->modelo->setNombreCentroFormacion($_POST['txfNombreCentroFormacion']);
+            $this->modelo->setSigla($_POST['txfSigla']);
+            $this->modelo->setDireccionCentroFormacion($_POST['txfDireccionCentroFormacion']);
+            $this->modelo->setTelefonoCentroFormacion($_POST['txfTelefonoCentroFormacion']);
+            $this->modelo->setIdRegional($_POST['cmbRegionales']);
+            $registro = $this->modelo->insertarCentroFormacion();
+            if ($registro) {
+                $datos['mensaje'] = "Se registro centro de formacion correctamente";
+            } else {
+                $datos['mensaje'] = "Error al registrar centro de formacion";
+            }
+            $datos['titulo'] = "centros de formacion";
+            Vista::mostrar('centrosFormacion', $datos);
+        }
+        
     }
 
     public function listarNombreCentroFormacion() {
@@ -50,37 +55,46 @@ class centrosFormacionControlador {
     }
 
     public function editarCentroFormacion() {
-        $datos['titulo'] = "Editar centro de formacion";
-        $this->modelo->setIdCentroFormacion($_POST['idCentroFormacion']);
-        if (!isset($_POST['btnGuardar'])) {
-            $datos['centroFormacion'] = $this->modelo->listarIdCentroFormacion();
-            Vista::mostrar('editarCentroFormacion', $datos);
-        } else {
-            $this->modelo->setNombreCentroFormacion($_POST['txfNombreCentroFormacion']);
-            $this->modelo->setSigla($_POST['txfSigla']);
-            $this->modelo->setDireccionCentroFormacion($_POST['txfDireccionCentroFormacion']);
-            $this->modelo->setTelefonoCentroFormacion($_POST['txfTelefonoCentroFormacion']);
-            $this->modelo->setIdRegional($_POST['cmbRegionales']);
-            $registro = $this->modelo->editarCentroFormacion();
-            if ($registro) {
-                $datos['mensaje'] = "Registro actializado correctamente";
+        if (!$_POST) {
+            header("location: centrosFormacion");
+        }
+        else {
+            $datos['titulo'] = "Editar centro de formacion";
+            $this->modelo->setIdCentroFormacion($_POST['idCentroFormacion']);
+            if (!isset($_POST['btnGuardar'])) {
+                $datos['centroFormacion'] = $this->modelo->listarIdCentroFormacion();
+                Vista::mostrar('editarCentroFormacion', $datos);
             } else {
-                $datos['mensaje'] = "No se actualizo registro";
+                $this->modelo->setNombreCentroFormacion($_POST['txfNombreCentroFormacion']);
+                $this->modelo->setSigla($_POST['txfSigla']);
+                $this->modelo->setDireccionCentroFormacion($_POST['txfDireccionCentroFormacion']);
+                $this->modelo->setTelefonoCentroFormacion($_POST['txfTelefonoCentroFormacion']);
+                $this->modelo->setIdRegional($_POST['cmbRegionales']);
+                $registro = $this->modelo->editarCentroFormacion();
+                if ($registro) {
+                    $datos['mensaje'] = "Registro actializado correctamente";
+                } else {
+                    $datos['mensaje'] = "No se actualizo registro";
+                }
+                Vista::mostrar('centrosFormacion', $datos);
             }
-            Vista::mostrar('centrosFormacion', $datos);
         }
     }
 
     public function eliminarCentroFormacion() {
-        $this->modelo->setIdCentroFormacion($_POST['idCentroFormacion']);
-        $registro = $this->modelo->eliminarCentroFormacion();
-        if ($registro) {
-            $datos['mensaje'] = "Se elimino Registro correctamente";
-        } else {
-            $datos['mensaje'] = "Error al eliminar centro de formacion";
+        if (!$_POST) {
+            header("location: centrosFormacion");
         }
-        $datos['titulo'] = "centros de formacion";
-        Vista::mostrar('centrosFormacion', $datos);
+        else {
+             $this->modelo->setIdCentroFormacion($_POST['idCentroFormacion']);
+            $registro = $this->modelo->eliminarCentroFormacion();
+            if ($registro) {
+                $datos['mensaje'] = "Se elimino Registro correctamente";
+            } else {
+                $datos['mensaje'] = "Error al eliminar centro de formacion";
+            }
+            $datos['titulo'] = "centros de formacion";
+            Vista::mostrar('centrosFormacion', $datos);
+        }
     }
-
 }

@@ -19,27 +19,38 @@ class beneficiariosControlador {
     }
 
     public function insertarBeneficiario() {
-        $this->modelo->setIdentificacionBeneficiario($_POST['txfIdentificacionBeneficiario']);
-        $this->modelo->setIdTipoDocumento($_POST['cmbTipoDocumento']);
-        $this->modelo->setNombresBeneficiario($_POST['txfNombresBeneficiario']);
-        $this->modelo->setApellidosBeneficiario($_POST['txfApellidosBeneficiario']);
-        $this->modelo->setIdGenero($_POST['cmbGenero']);
-        $this->modelo->setFechaNacimientoBeneficiario($_POST['txfFechaNacimientoBeneficiario']);
-        $this->modelo->setIdFuncionario($_POST['cmbIdFuncionario']);
-        $this->modelo->setCronicoBeneficiario($_POST['cmbCronico']);
-        $this->modelo->setDireccionBeneficiario($_POST['txfDireccionBeneficiario']);
-        $this->modelo->setTelefonoBeneficiario($_POST['txfTelefonoBeneficiario']);
-        $this->modelo->setMovilBeneficiario($_POST['txfMovilBeneficiario']);
-        $this->modelo->setCorreoBeneficiario($_POST['txfCorreoBeneficiario']);
-        $this->modelo->setEstadoBeneficiario($_POST['cmbEstadoBeneficiario']);
-        $registro = $this->modelo->insertarBeneficiario();
-        if ($registro) {
-            $datos['mensaje'] = "Se inserto Beneficiario correctamente";
-        } else {
-            $datos['mensaje'] = "No se inserto Beneficiario";
+        if (!$_POST) {
+            header("location: beneficiarios");
         }
-        $datos['titulo'] = "Beneficiarios";
-        Vista::mostrar('Beneficiarios', $datos);
+        else {
+            $this->modelo->setIdentificacionBeneficiario($_POST['txfIdentificacionBeneficiario']);
+            $this->modelo->setIdTipoDocumento($_POST['cmbTipoDocumento']);
+            $this->modelo->setNombresBeneficiario($_POST['txfNombresBeneficiario']);
+            $this->modelo->setApellidosBeneficiario($_POST['txfApellidosBeneficiario']);
+            $this->modelo->setIdGenero($_POST['cmbGenero']);
+            $this->modelo->setFechaNacimientoBeneficiario($_POST['txfFechaNacimientoBeneficiario']);
+            $this->modelo->setIdFuncionario($_POST['cmbIdFuncionario']);
+            $this->modelo->setCronicoBeneficiario($_POST['cmbCronico']);
+            $this->modelo->setDireccionBeneficiario($_POST['txfDireccionBeneficiario']);
+            $this->modelo->setTelefonoBeneficiario($_POST['txfTelefonoBeneficiario']);
+            $this->modelo->setMovilBeneficiario($_POST['txfMovilBeneficiario']);
+            $this->modelo->setCorreoBeneficiario($_POST['txfCorreoBeneficiario']);
+            $this->modelo->setEstadoBeneficiario($_POST['cmbEstadoBeneficiario']);
+            $registro = $this->modelo->insertarBeneficiario();
+            $idBeneficiario = $this->modelo->listarIdentificacionBeneficiario();
+            $this->modelo->setIdBeneficiario($idBeneficiario[0]['idBeneficiario']);
+    
+            $resgistroHistoria = $this->modelo->insertarHistoriaClinica();
+            
+            if ($registro || $registroHistoria) { //corregir esto 
+                $datos['mensaje'] = "Se inserto Beneficiario correctamente";
+            } else {
+                $datos['mensaje'] = "No se inserto Beneficiario";
+            }
+            $datos['titulo'] = "Beneficiarios";
+            Vista::mostrar('beneficiarios', $datos);
+                
+        }
     }
 
     public function listarBeneficiarios() {
@@ -57,46 +68,56 @@ class beneficiariosControlador {
     }
 
     public function editarBeneficiario() {
-        $datos['titulo'] = "Editar beneficiario";
-        $this->modelo->setIdBeneficiario($_POST['idBeneficiario']);
-        if (!isset($_POST['btnGuardar'])) {
-            $datos['beneficiario'] = $this->modelo->listarIdBeneficiario();
-            Vista::mostrar('editarBeneficiario', $datos);
-        } else {
-            $this->modelo->setIdentificacionBeneficiario($_POST['txfIdentificacionBeneficiario']);
-            $this->modelo->setIdTipoDocumento($_POST['cmbTipoDocumento']);
-            $this->modelo->setNombresBeneficiario($_POST['txfNombresBeneficiario']);
-            $this->modelo->setApellidosBeneficiario($_POST['txfApellidosBeneficiario']);
-            $this->modelo->setIdGenero($_POST['cmbGenero']);
-            $this->modelo->setFechaNacimientoBeneficiario($_POST['txfFechaNacimientoBeneficiario']);
-            $this->modelo->setIdFuncionario($_POST['cmbIdFuncionario']);
-            $this->modelo->setCronicoBeneficiario($_POST['cmbCronico']);
-            $this->modelo->setDireccionBeneficiario($_POST['txfDireccionBeneficiario']);
-            $this->modelo->setTelefonoBeneficiario($_POST['txfTelefonoBeneficiario']);
-            $this->modelo->setMovilBeneficiario($_POST['txfMovilBeneficiario']);
-            $this->modelo->setCorreoBeneficiario($_POST['txfCorreoBeneficiario']);
-            $this->modelo->setEstadoBeneficiario($_POST['cmbEstadoBeneficiario']);
-            $registro = $this->modelo->editarBeneficiario();
-            if ($registro) {
-                $datos['mensaje'] = "Beneficiario Editado correctamente";
+        if (!$_POST) {
+            header("location: beneficiarios");
+        }
+        else {
+            $datos['titulo'] = "Editar beneficiario";
+            $this->modelo->setIdBeneficiario($_POST['idBeneficiario']);
+            if (!isset($_POST['btnGuardar'])) {
+                $datos['beneficiario'] = $this->modelo->listarIdBeneficiario();
+                Vista::mostrar('editarBeneficiario', $datos);
             } else {
-                $datos['mensaje'] = "No se edito el funcionario";
+                $this->modelo->setIdentificacionBeneficiario($_POST['txfIdentificacionBeneficiario']);
+                $this->modelo->setIdTipoDocumento($_POST['cmbTipoDocumento']);
+                $this->modelo->setNombresBeneficiario($_POST['txfNombresBeneficiario']);
+                $this->modelo->setApellidosBeneficiario($_POST['txfApellidosBeneficiario']);
+                $this->modelo->setIdGenero($_POST['cmbGenero']);
+                $this->modelo->setFechaNacimientoBeneficiario($_POST['txfFechaNacimientoBeneficiario']);
+                $this->modelo->setIdFuncionario($_POST['cmbIdFuncionario']);
+                $this->modelo->setCronicoBeneficiario($_POST['cmbCronico']);
+                $this->modelo->setDireccionBeneficiario($_POST['txfDireccionBeneficiario']);
+                $this->modelo->setTelefonoBeneficiario($_POST['txfTelefonoBeneficiario']);
+                $this->modelo->setMovilBeneficiario($_POST['txfMovilBeneficiario']);
+                $this->modelo->setCorreoBeneficiario($_POST['txfCorreoBeneficiario']);
+                $this->modelo->setEstadoBeneficiario($_POST['cmbEstadoBeneficiario']);
+                $registro = $this->modelo->editarBeneficiario();
+                if ($registro) {
+                    $datos['mensaje'] = "Beneficiario Editado correctamente";
+                } else {
+                    $datos['mensaje'] = "No se edito el funcionario";
+                }
+                $datos['titulo'] = "Beneficiarios";
+                Vista::mostrar('beneficiarios', $datos);
             }
-            $datos['titulo'] = "Beneficiarios";
-            Vista::mostrar('funcionarios', $datos);
         }
     }
 
     public function eliminarBeneficiario() {
-        $this->modelo->setIdBeneficiario($_POST['idBeneficiario']);
-        $resultado = $this->modelo->eliminarBeneficiario();
-        if ($resultado) {
-            $datos['mensaje'] = "Registro eliminado correctamente";
-        } else {
-            $datos['mensaje'] = "Error al eliminar registro";
+        if (!$_POST) {
+            header("location: beneficiarios");
         }
-        $datos['titulo'] = "Beneficiarios";
-        Vista::mostrar('beneficiarios', $datos);
+        else {
+            $this->modelo->setIdBeneficiario($_POST['idBeneficiario']);
+            $resultado = $this->modelo->eliminarBeneficiario();
+            if ($resultado) {
+                $datos['mensaje'] = "Registro eliminado correctamente";
+            } else {
+                $datos['mensaje'] = "Error al eliminar registro";
+            }
+            $datos['titulo'] = "Beneficiarios";
+            Vista::mostrar('beneficiarios', $datos);
+        }
     }
 
 }

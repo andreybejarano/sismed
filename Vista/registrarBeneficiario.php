@@ -50,21 +50,21 @@
                     </div>
                     <div class="form-group">
                         <label for="txfTelefonoBeneficiario">Telefono</label>
-                        <input type="text" id="txfTelefonoBeneficiario" name="txfTelefonoBeneficiario" class="form-control" placeholder="Telefono: " required>
+                        <input type="number" id="txfTelefonoBeneficiario" name="txfTelefonoBeneficiario" class="form-control" placeholder="Telefono: " required>
                     </div>
                     <div class="form-group">
                         <label for="txfMovilBeneficiario">Movil</label>
-                        <input type="text" id="txfMovilBeneficiario" name="txfMovilBeneficiario" class="form-control" placeholder="Movil: " required>
+                        <input type="number" id="txfMovilBeneficiario" name="txfMovilBeneficiario" class="form-control" placeholder="Movil: " required>
                     </div>
                     <div class="form-group">
                         <label for="txfCorreoBeneficiario">Correo electronico</label>
-                        <input type="text" id="txfCorreoBeneficiario" name="txfCorreoBeneficiario" class="form-control" placeholder="Correo electronico: " required>
+                        <input type="email" id="txfCorreoBeneficiario" name="txfCorreoBeneficiario" class="form-control" placeholder="Correo electronico: " required>
                     </div>
                     <div class="form-group">
                         <label for="cmbCronico">Cronico</label>
                         <select class="form-control" name="cmbCronico" id="cmbCronico">
-                            <option value="1">Cronico</option>
                             <option value="0">No cronico</option>
+                            <option value="1">Cronico</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -83,19 +83,4 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    $.post('<?php echo URL_BASE; ?>tipos/listarTipoDocumento', {}, function (data) {
-        var datos = JSON.parse(data);
-        $.each(datos, function (i, v) {
-            $('#cmbTipoDocumento').append('<option value="' + v.idTipoDocumento + '">' + v.tipoDocumento + '</option>');
-        });
-    });
-
-    $.post('<?php echo URL_BASE; ?>funcionarios/listarFuncionarios', {}, function (data) {
-        var datos = JSON.parse(data);
-        $.each(datos, function (i, v) {
-            $('#cmbIdFuncionario').append('<option value="' + v.idFuncionario + '">' + v.numeroIdentificacionFuncionario + '</option>');
-        });
-    });
-
-</script>
+<script type="text/javascript" src="<?php echo URL_BASE; ?>Vista/js/registrarBeneficiario.js"></script>

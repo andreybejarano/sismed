@@ -16,11 +16,11 @@
                     </div>
                     <div class="form-group">
                         <label for="txfContrasenia">Contraseña</label>
-                        <input type="password" id="txfContrasenia" name="txfContrasenia" class="form-control" placeholder="Contraseña: " required>
+                        <input type="password" id="txfContrasenia" name="txfContrasenia" class="form-control" placeholder="Contraseña: " maxlength="16" required>
                     </div>
                     <div class="form-group">
                         <label for="txfContraseniaConf">Contraseña</label>
-                        <input type="password" id="txfContraseniaConf" name="txfContraseniaConf" class="form-control" placeholder="Contraseña: " required>
+                        <input type="password" id="txfContraseniaConf" name="txfContraseniaConf" class="form-control" placeholder="Contraseña: " maxlength="16" required>
                         <span id="errorPasswors" hidden style="color: red"></span>
                     </div>
                     <div class="form-group">
@@ -49,7 +49,7 @@
     $.post('<?php echo URL_BASE; ?>empleados/listarEmpleados', {}, function (data) {
         var datos = JSON.parse(data);
         $.each(datos, function (i, v) {
-            $('#cmbIdentificacionEmpleado').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + '</option>');
+            $('#cmbIdentificacionEmpleado').append('<option value="' + v.idEmpleado + '">' + v.numeroIdentificacionEmpleado + ' - ' + v.nombresEmpleado + ' ' + v.apellidosEmpleado + '</option>');
         });
     });
 

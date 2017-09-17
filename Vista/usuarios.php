@@ -1,9 +1,8 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
-
 
 <div id="page-wrapper" style=" min-height:30em ">
     <div class="container-fluid fondoFluid" id="formArea">
@@ -23,14 +22,27 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <img src="<?php echo URL_BASE; ?>Vista/img/logo2.png" alt="" class="img-responsive" style="max-widht:150px; max-height:150px;">
             </div>
         </div>
-
-        <div class="row" style="margin-top: 5%"></div>
-
-        <div class="row">
+            <div class="row">
+            
+            <div class=" col-md-offset-3 col-md-6 col-md-offset-3">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <i class="fa fa-user fa-5x"></i>
+                            </div>
+                            <div class="col-xs-7 text-right">
+                               <div class="huge">Modulo de usuarios</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="col-lg-6 col-md-6 col-sm-7 col-xs-12">
                 <div class="input-group">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
-                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Correo electronico">
+                    <input type="text" name="txtBuscar" id="txtBuscar" class="form-control" placeholder="Correo electronico" maxlength="30">
                     <span class="input-group-btn">
                         <button class="btn btn-info" id="btnBuscar" type="button">Buscar</button>
                     </span>
@@ -77,6 +89,9 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie', $datos); ?>
 <script type="text/javascript">
+
+
+
     $.post('<?php echo URL_BASE; ?>usuarios/listarUsuarios', {}, function (data) {
         var datos = JSON.parse(data);
         var filas;

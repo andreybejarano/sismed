@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 
 
@@ -66,15 +66,15 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             </div>
             <div class="form-group">
                 <label for="txfTelefonoBeneficiario">Telefono</label>
-                <input type="text" id="txfTelefonoBeneficiario" name="txfTelefonoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['telefonoBeneficiario']; ?>">
+                <input type="number" id="txfTelefonoBeneficiario" name="txfTelefonoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['telefonoBeneficiario']; ?>">
             </div>
             <div class="form-group">
                 <label for="txfMovilBeneficiario">Movil</label>
-                <input type="text" id="txfMovilBeneficiario" name="txfMovilBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['movilBeneficiario']; ?>">
+                <input type="number" id="txfMovilBeneficiario" name="txfMovilBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['movilBeneficiario']; ?>">
             </div>
             <div class="form-group">
                 <label for="txfCorreoBeneficiario">Correo electronico</label>
-                <input type="text" id="txfCorreoBeneficiario" name="txfCorreoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['correoBeneficiario']; ?>">
+                <input type="email" id="txfCorreoBeneficiario" name="txfCorreoBeneficiario" class="form-control" value="<?php echo $beneficiario[0]['correoBeneficiario']; ?>">
             </div>
             <div class="form-group">
                 <label for="cmbCronico">Cronico</label>
@@ -91,14 +91,9 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 </select>
             </div>
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
-            <button class="btn btn-primary" name="btnContrasena" id="btnContrasena">CAMBIAR CONTRASEÑA</button> 
-            <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'beneficiarios/beneficiarios'; ?>">ATRAS</a></button>
             <input type="hidden" name="idBeneficiario" value="<?php echo $beneficiario[0]['idBeneficiario']; ?>">
         </form>
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>
-<script type="text/javascript">
-
-</script>
 

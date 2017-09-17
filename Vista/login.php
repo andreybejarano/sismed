@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="<?php echo URL_BASE; ?>Vista/css/login-logo.css">
         <link rel="shortcut icon" href="<?php echo URL_BASE; ?>Vista/img/favicon.png" type="image/x-icon">
     </head>
-    <body>
+    <body background="img/background.jpg">
         <div class="container container-fluid">
             <div class="row">
                 <div class="col-lg-4 col-lg-offset-4 col-md-5 col-md-offset-3 col-sm-6 col-sm-offset-3 col-xs-12" style="margin-top: 10px">
@@ -32,11 +32,11 @@
                                     <label for="">Contraseña</label>
                                     <div class="input-group">
                                         <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                        <input type="password" name="txtContrasenia" class="form-control" placeholder="Contraseña" required>
+                                        <input type="password" name="txtContrasenia" class="form-control" placeholder="Contraseña" required maxlength="16">
                                     </div>
                                 </div>
                                 <p class="text-center">
-                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-lock"></span> Iniciar sesión</button>
+                                    <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span> Iniciar sesión</button>
                                 </p>
                             </form>
                             <?php if (isset($mensaje)): ?>
@@ -51,7 +51,7 @@
             <div class="container container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <p class="text-center" id="footer-text"><small>Sismed &copy; 2015 </small></p>
+                        <p class="text-center" id="footer-text"><small>Sismed &copy; 2016 </small></p>
                     </div>
                 </div>
             </div>

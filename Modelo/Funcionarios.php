@@ -48,7 +48,6 @@ class Funcionarios {
                 . "'{$this->getTelefonoFuncionario()}', "
                 . "'{$this->getMovilFuncionario()}', "
                 . "'{$this->getCorreoFuncionario()}');";
-
         return $this->conexion->consultaSimple($sql);
     }
 

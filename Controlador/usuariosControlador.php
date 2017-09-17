@@ -12,13 +12,17 @@ class usuariosControlador {
         if (!$_SESSION['valido']) {
             header('Location: ' . URL_BASE);
         }
+        if ($_SESSION['rol']== 3 || $_SESSION['rol']== 2) {
+            header('location: '.URL_BASE);
+        }
+        
         $this->modelo = Modelo::cargar('Usuarios');
     }
 
     public function insertarUsuario() {
         $datos['titulo'] = "Registrar Usuario";
         if (!$_POST) :
-            Vista::mostrar('registrarUsuario', $datos);
+            header("location: usuarios");
         else :
             $this->modelo->setContrasenia($_POST['txfContrasenia']);
             $this->modelo->setIdRol($_POST['cmbRol']);
@@ -44,16 +48,55 @@ class usuariosControlador {
     }
 
     public function editarUsuario() {
-        $datos['titulo'] = "Editar usuario";
-        $this->modelo->setIdUsuario($_POST['idUsuario']);
-        if (!isset($_POST['btnGuardar'])) {
-            $datos['usuario'] = $this->modelo->listarIdUsuario();
-            Vista::mostrar('editarUsuario', $datos);
-        } else {
-            $datos['mensaje'] = $this->modelo->editarUsuario();
-            Vista::mostrar('usuarios', $datos);
+        if (isset($_POST['btnEditarUsuario'])) {
+            
+            $datos['titulo'] = "Editar usuario";
+            $this->modelo->setIdUsuario($_POST['idUsuario']);
+            
+            if (!isset($_POST['btnGuardar'])) {
+                $datos['usuario'] = $this->modelo->listarIdUsuario();
+                Vista::mostrar('editarUsuario', $datos);
+            } else {
+                
+                $this->modelo->setContrasenia($_POST['txfContrasenia']);
+                $this->modelo->setIdRol($_POST['cmbRol']);
+                $this->modelo->setEstadoUsuario($_POST['cmbEstadoUsuario']);
+                
+                $datos['mensaje'] = $this->modelo->editarUsuario();
+                Vista::mostrar('usuarios', $datos);
+            }
+        }else{
+            header("location: usuarios");
         }
     }
+    
+    public function editarContrasenia (){
+            // echo '-'.$_POST['txfContraseniaActual'].'<br>';
+            // echo '-'.$_POST['idUsuario'].'<br>';
+            $this->modelo->setContrasenia($_POST['txfContraseniaActual']);
+            $this->modelo->setIdUsuario($_POST['idUsuario']);
+            $respuesta = $this->modelo->verificarContrasenia();
+            if ($respuesta)
+            {
+                $this->modelo->setContrasenia($_POST['txfNuevaContrasenia']);
+                $registro = $this->modelo->editarContrasenia();
+                if ($registro)
+                {
+                    $datos['mensaje'] = "Registro Actualizado Correctamente";
+                }
+                else
+                {
+                    $datos['mensaje'] = "Fallo La Actualizacion Del Registro";
+                }
+                Vista::mostrar('usuarios',$datos);   
+            } 
+            else
+            {
+                $datos['mensaje'] = "La contraseña actual no corresponde";
+                Vista::mostrar('usuarios',$datos);
+            }
+    }
+    
 
     public function usuarios() {
         $datos['titulo'] = "Usuarios";
@@ -61,14 +104,20 @@ class usuariosControlador {
     }
 
     public function eliminarUsuario() {
-        $this->modelo->setIdUsuario($_POST['idUsuario']);
-        $registro = $this->modelo->eliminarUsuario();
-        if ($registro) {
-            $datos['mensaje'] = "Registro eliminado correctamente";
-        } else {
-            $datos['mensaje'] = "Error al eliminar registro";
+        if (isset($_POST['btnEliminarUsuario'])){
+            $this->modelo->setIdUsuario($_POST['idUsuario']);
+            $registro = $this->modelo->eliminarUsuario();
+            if ($registro) {
+                $datos['mensaje'] = "Registro eliminado correctamente";
+            } else {
+                $datos['mensaje'] = "Error al eliminar registro";
+            }
+            Vista::mostrar('usuarios', $datos);
         }
-        Vista::mostrar('usuarios', $datos);
+        else{
+            header("location: usuarios");
+        }
+        
     }
 
 }

@@ -10,35 +10,35 @@
                 <form method="POST" action="<?php echo URL_BASE . 'medicamentos/insertarMedicamento'; ?>">
                     <div class="form-group">
                         <label for="txfCodigoMedicamento">Codigo</label>
-                        <input type="text" id="txfCodigoMedicamento" name="txfCodigoMedicamento" class="form-control" placeholder="Codigo" required>
+                        <input type="text" id="txfCodigoMedicamento" name="txfCodigoMedicamento" class="form-control" placeholder="Codigo" required maxlength="20">
                     </div>
                     <div class="form-group">
-                        <label for="txfNombreGenericoMedicamento">Celular</label>
-                        <input type="text" id="txfNombreGenericoMedicamento" name="txfNombreGenericoMedicamento" class="form-control" placeholder="Nombre Generico" required>
+                        <label for="txfNombreMedicamento">Nombre Generico</label>
+                        <input type="text" id="txfNombreMedicamento" name="txfNombreMedicamento" class="form-control" placeholder="Nombre Generico" required maxlength="45">
                     </div>
                     <div class="form-group">
                         <label for="txfDescripcionMedicamento">Descripcion</label>
-                        <input type="text" id="txfDescripcionMedicamento" name="txfDescripcionMedicamento" class="form-control" placeholder="Descripcion" required>
+                        <input type="text" id="txfDescripcionMedicamento" name="txfDescripcionMedicamento" class="form-control" placeholder="Descripcion" required maxlength="300">
                     </div>
                     <div class="form-group">
                         <label for="txfFormaFarmaceuticaMedicamento">Formula farmaceutica</label>
-                        <input type="text" id="txfFormaFarmaceuticaMedicamento" name="txfFormaFarmaceuticaMedicamento" class="form-control" placeholder="Formula farmaceutica" required>
+                        <input type="text" id="txfFormaFarmaceuticaMedicamento" name="txfFormaFarmaceuticaMedicamento" class="form-control" placeholder="Formula farmaceutica" required maxlength="60">
                     </div>
                     <div class="form-group">
                         <label for="txfConcentracionMedicamento">Concentracion</label>
-                        <input type="text" id="txfConcentracionMedicamento" name="txfConcentracionMedicamento" class="form-control" placeholder="Concentracion" required>
+                        <input type="text" id="txfConcentracionMedicamento" name="txfConcentracionMedicamento" class="form-control" placeholder="Concentracion" required maxlength="10">
                     </div>
                     <div class="form-group">
                         <label for="txfDosisMedicamento">Dosis</label>
-                        <input type="text" id="txfDosisMedicamento" name="txfDosisMedicamento" class="form-control" placeholder="Dosis" required>
+                        <input type="text" id="txfDosisMedicamento" name="txfDosisMedicamento" class="form-control" placeholder="Dosis" required maxlength="16">
                     </div>
                     <div class="form-group">
                         <label for="txfViaFrecuenciaAdministracionMedicamento">Via frecuencia administracion</label>
-                        <input type="text" id="txfViaFrecuenciaAdministracionMedicamento" name="txfViaFrecuenciaAdministracionMedicamento" class="form-control" placeholder="Via frecuencia administracion" required>
+                        <input type="text" id="txfViaFrecuenciaAdministracionMedicamento" name="txfViaFrecuenciaAdministracionMedicamento" class="form-control" placeholder="Via frecuencia administracion" required maxlength="20">
                     </div>
                     <div class="form-group">
                         <label for="txfRegistroInvimaMedicamento">Registro invima</label>
-                        <input type="text" id="txfRegistroInvimaMedicamento" name="txfRegistroInvimaMedicamento" class="form-control" placeholder="Registro invima" required>
+                        <input type="text" id="txfRegistroInvimaMedicamento" name="txfRegistroInvimaMedicamento" class="form-control" placeholder="Registro invima" required maxlength="20">
                     </div>
                     <button type="submit" class="btn btn-primary" name="btnRegistrarMedicamento" id="btnRegistrarMedicamento"> ENVIAR </button>
                 </form>

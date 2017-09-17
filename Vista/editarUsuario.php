@@ -1,9 +1,8 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
-
 
 <div id="page-wrapper" style=" min-height:30em ">
     <div class="container-fluid fondoFluid" id="formArea">
@@ -25,19 +24,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
         </div>
         <form action="<?php echo URL_BASE . 'usuarios/editarUsuario'; ?>" method="POST" class="col-xs-12 col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2 col-lg-8 col-lg-offset-2">
             <legend>Editar usuario</legend>
-            <div class="form-group">
-                <label for="idUsuario">ID usuario: </label> 
-                <input class="form-control" type="text" name="txfIdUsuario" value="<?php echo $usuario[0]['idUsuario']; ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="txfContraseniaUsuario">Contraseña: </label>
-                <input class="form-control" type="password" name="txfContrasenia" id="txfContrasenia" value="<?php echo $usuario[0]['contrasenia']; ?>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="txfContraseniaConf">Contraseña</label>
-                <input type="password" id="txfContraseniaConf" name="txfContraseniaConf" value="<?php echo $usuario[0]['contrasenia']; ?>" class="form-control" placeholder="Contraseña: " readonly>
-                <span id="errorPasswors" hidden style="color: red"></span>
-            </div>
+            
             <div class="form-group">
                 <label for="cmbRoles">Rol: </label>
                 <select class="form-control" name="cmbRoles">
@@ -51,11 +38,43 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 </select>
             </div>
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
-            <button class="btn btn-primary" name="btnContrasena" id="btnContrasena">CAMBIAR CONTRASEÑA</button> 
-            <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'usuarios/usuarios'; ?>">ATRAS</a></button>
-            <input type="hidden" name="idUsuario" value="<?php echo $usuario[0]['idUsuario']; ?>">
+            <button type="button" class="btn btn-primary" name="btnContrasena" data-toggle="modal" data-target="#ModalCambiarContrasenia" id="btnContrasena">CAMBIAR CONTRASEÑA</button> 
+            <button type="button" class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'usuarios/usuarios'; ?>">ATRAS</a></button>
+            <input type="hidden" name="idUsuario" value="<?php echo $usuario['idUsuario']; ?>">
         </form>
         <div class="row" style="margin-top: 22%"></div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="ModalCambiarContrasenia" aria-labelledby="ModalCambiarContrasenia">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <form action="<?php echo URL_BASE. 'usuarios/editarContrasenia'  ?>" method="post">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="myModalLabel">Cambiar Contraseña</h4>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="txfContraseniaActual">Contraseña actual: </label>
+                                <input class="form-control" type="password" name="txfContraseniaActual" id="txfContraseniaActual" placeholder="Contraseña actual">
+                            </div>
+                            <div class="form-group">
+                                <label for="txfNuevaContrasenia">Contraseña nueva: </label>
+                                <input class="form-control" type="password" name="txfNuevaContrasenia" id="txfNuevaContrasenia" placeholder="Contraseña nueva">
+                            </div>
+                            <div class="form-group">
+                                <label for="txfContraseniaConf">Confirmar contraseña</label>
+                                <input type="password" id="txfContraseniaConf" name="txfContraseniaConf" class="form-control" placeholder="Confirmar Contraseña">
+                                <span id="errorPasswors" hidden style="color: red"></span>
+                                <input type="hidden" name="idUsuario" value="<?php echo $usuario['idUsuario']; ?>">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" name="btnCambiarContrasenia" class="btn btn-primary">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>
@@ -67,7 +86,7 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     });
 
     $('#txfContraseniaConf').keyup(function () {
-        var pass1 = $('#txfContrasenia').val();
+        var pass1 = $('#txfNuevaContrasenia').val();
         var pass2 = $('#txfContraseniaConf').val();
         if (pass1 != pass2) {
             if (pass2 === '') {
@@ -84,5 +103,9 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             $('#errorPasswors').html(' ');
         }
     });
+    
+    
+    
+    
 </script>
 

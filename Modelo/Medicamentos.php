@@ -28,7 +28,7 @@ class Medicamentos {
                 . "concentracionMedicamento, "
                 . "dosisMedicamento, "
                 . "viaFrecuenciaAdministracionMedicamento, "
-                . "registroInvimaMedicamento) "
+                . "registroInvimaMedicamento, centros_medicos_idCentroMedico) "
                 . "VALUES (null, "
                 . "'{$this->getCodigoMedicamento()}', "
                 . "'{$this->getNombreGenericoMedicamento()}', "
@@ -37,7 +37,7 @@ class Medicamentos {
                 . "'{$this->getConcentracionMedicamento()}', "
                 . "'{$this->getDosisMedicamento()}', "
                 . "'{$this->getViaFrecuenciaAdministracionMedicamento()}', "
-                . "'{$this->getRegistroInvimaMedicamento()}');";
+                . "'{$this->getRegistroInvimaMedicamento()}', 1);";
         
         return $this->conexion->consultaSimple($sql);
     }

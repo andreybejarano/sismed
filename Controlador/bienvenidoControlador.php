@@ -8,7 +8,6 @@ class bienvenidoControlador {
         };
     }
     
-    
     public function principal() {
         $datos['titulo'] = "Bienvenido";
         Vista::mostrar('principal',$datos);

@@ -10,7 +10,7 @@
                 <form method="POST" action="<?php echo URL_BASE . 'enfermedades/insertarEnfermedad'; ?>">
                     <div class="form-group">
                         <label for="txfNombreEnfermedad">Nombre </label>
-                        <input type="text" id="txfNombreEnfermedad" name="txfNombreEnfermedad" class="form-control" placeholder="Nombre enfermedad" required>
+                        <input type="text" id="txfNombreEnfermedad" name="txfNombreEnfermedad" class="form-control" placeholder="Nombre enfermedad" required maxlength="20">
                     </div>
                     <div class="form-group">
                         <label for="txfSintomatologiaEnfermedad">Sintomatologia</label>
@@ -29,6 +29,3 @@
         </div>
     </div>
 </div>
-<script type="text/javascript">
-    
-</script>

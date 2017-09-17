@@ -82,7 +82,7 @@ class Usuarios {
                 . "empleados_idEmpleado, "
                 . "estadoUsuario) "
                 . "VALUE(NULL, "
-                . "'{$this->getContrasenia()}', "
+                . "'".md5($this->getContrasenia())."', "
                 . "{$this->getIdRol()}, "
                 . "{$this->getIdEmpleado()}, "
                 . "{$this->getEstadoUsuario()});";
@@ -92,14 +92,30 @@ class Usuarios {
 
     public function editarUsuario() {
         $sql = "UPDATE usuarios "
-                . "SET contrasenia = '{$this->getContrasenia()}', "
-                . "roles_idRol = {$this->getIdRol()}, "
+                . "SET roles_idRol = {$this->getIdRol()}, "
                 . "empleados_idEmpleado = {$this->getIdEmpleado()}, "
                 . "estadoUsuario = {$this->getEstadoUsuario()} "
                 . "WHERE idUsuario = {$this->getIdUsuario()};";
 
         return $this->conexion->consultaSimple($sql);
     }
+
+    public function verificarContrasenia (){
+        $sql = "select * from usuarios where contrasenia = '".md5($this->getContrasenia())."'
+        and idUsuario = '{$this->getIdUsuario()}' ";
+        return $this->conexion->consulta($sql);
+    }
+    
+    public function editarContrasenia() {
+        $sql = "UPDATE usuarios "
+                . "SET contrasenia = '".md5($this->getContrasenia())."' "
+                . "WHERE idUsuario = {$this->getIdUsuario()};";
+
+        return $this->conexion->consultaSimple($sql);
+    }
+
+
+
 
     public function eliminarUsuario() {
         $sql = "DELETE FROM usuarios WHERE idUsuario = {$this->getIdUsuario()}";
@@ -121,7 +137,8 @@ class Usuarios {
                 . "INNER JOIN roles ON roles_idRol = idRol "
                 . "INNER JOIN empleados ON empleados_idEmpleado = idEmpleado "
                 . "WHERE correoEmpleado = '{$this->getCorreoEmpleado()}' "
-                . "AND contrasenia = '{$this->getContrasenia()}';";
+                // . "AND contrasenia ='{$this->getContrasenia()}';";
+                . "AND contrasenia ='".md5($this->getContrasenia())."';";
 
         return $this->conexion->consulta($sql);
     }

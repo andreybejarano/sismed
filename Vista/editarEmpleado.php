@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 
 
@@ -76,15 +76,15 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
             </div>
             <div class="form-group">
                 <label for="txfTelefonoEmpleado">Telefono</label>
-                <input type="text" id="txfTelefonoEmpleado" name="txfTelefonoEmpleado" class="form-control" value="<?php echo $empleado[0]['telefonoEmpleado']; ?>">
+                <input type="number" id="txfTelefonoEmpleado" name="txfTelefonoEmpleado" class="form-control" value="<?php echo $empleado[0]['telefonoEmpleado']; ?>">
             </div>
             <div class="form-group">
                 <label for="txfMovilEmpleado">Movil</label>
-                <input type="text" id="txfMovilEmpleado" name="txfMovilEmpleado" class="form-control" value="<?php echo $empleado[0]['movilEmpleado']; ?>">
+                <input type="number" id="txfMovilEmpleado" name="txfMovilEmpleado" class="form-control" value="<?php echo $empleado[0]['movilEmpleado']; ?>">
             </div>
             <div class="form-group">
                 <label for="txfCorreoEmpleado">Correo electronico</label>
-                <input type="text" id="txfCorreoEmpleado" name="txfCorreoEmpleado" class="form-control" value="<?php echo $empleado[0]['correoEmpleado']; ?>">
+                <input type="email" id="txfCorreoEmpleado" name="txfCorreoEmpleado" class="form-control" value="<?php echo $empleado[0]['correoEmpleado']; ?>">
             </div>
             <div class="form-group">
                 <label for="cmbEstadoEmpleado">Estado</label>
@@ -94,14 +94,9 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 </select>
             </div>
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
-            <button class="btn btn-primary" name="btnContrasena" id="btnContrasena">CAMBIAR CONTRASEÑA</button> 
             <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'empleados/empleados'; ?>">ATRAS</a></button>
             <input type="hidden" name="idEmpleado" value="<?php echo $empleado[0]['idEmpleado']; ?>">
         </form>
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>
-<script type="text/javascript">
-    
-</script>
-

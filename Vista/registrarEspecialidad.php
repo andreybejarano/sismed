@@ -10,7 +10,7 @@
                 <form method="POST" action="<?php echo URL_BASE . 'especialidades/insertarEspecialidad'; ?>">
                     <div class="form-group">
                         <label for="txfDescipcionEspecialidad">Descripcion Especialidad</label>
-                        <input type="text" id="txfDescipcionEspecialidad" name="txfDescipcionEspecialidad" class="form-control" placeholder="Descripcion Especialidad " required>
+                        <input type="text" id="txfDescipcionEspecialidad" name="txfDescipcionEspecialidad" class="form-control" placeholder="Descripcion Especialidad " required maxlength="300">
                     </div>
                     <button type="submit" class="btn btn-primary" name="btnRegistrarEspecialidad" id="btnRegistrarEspecialidad"> ENVIAR </button>
                 </form>
@@ -21,4 +21,3 @@
         </div>
     </div>
 </div>
-</script>

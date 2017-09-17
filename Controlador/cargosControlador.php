@@ -28,44 +28,58 @@ class cargosControlador {
     }
 
     public function insertarCargo() {
-        $this->modelo->setDescripcionCargo($_POST['txfDescipcionCargo']);
-        $registro = $this->modelo->insertarCargo();
-        if ($registro) {
-            $datos['mensaje'] = "Cargo insertado correctamente";
-        } else {
-            $datos['mensaje'] = "No se inserto el cargo";
+        if (!$_POST){
+            header("location: cargos");
         }
-
-        Vista::mostrar('cargos', $datos);
-    }
-    
-    public function editarCargo() {
-        $datos['titulo'] = "Editar Cargo";
-        $this->modelo->setIdCargo($_POST['idCargo']);
-        if (!isset($_POST['btnGuardar'])) {
-            $datos['cargo'] = $this->modelo->listarIdCargo();
-            Vista::mostrar('editarCargo', $datos);
-        }else{
+        else{
             $this->modelo->setDescripcionCargo($_POST['txfDescipcionCargo']);
-            $registro = $this->modelo->editarCargo();
+            $registro = $this->modelo->insertarCargo();
             if ($registro) {
-                $datos['mensaje'] = "Registro actializado correctamente";
-            }else{
-                $datos['mensaje'] = "No se actualizo registro";
+                $datos['mensaje'] = "Cargo insertado correctamente";
+            } else {
+                $datos['mensaje'] = "No se inserto el cargo";
             }
             Vista::mostrar('cargos', $datos);
         }
     }
     
-    public function eliminarCargo() {
-        $this->modelo->setIdCargo($_POST['idCargo']);
-        $registro = $this->modelo->eliminarCargo();
-        if ($registro) {
-            $datos['mensaje'] = "Registro eliminado correctamente";
-        } else {
-            $datos['mensaje'] = "Error al eliminar registro";
+    public function editarCargo() {
+        if (!$_POST){
+            header("location: cargos");
         }
-        Vista::mostrar('cargos', $datos);
+        else{
+            $datos['titulo'] = "Editar Cargo";
+            $this->modelo->setIdCargo($_POST['idCargo']);
+            if (!isset($_POST['btnGuardar'])) {
+                $datos['cargo'] = $this->modelo->listarIdCargo();
+                Vista::mostrar('editarCargo', $datos);
+            }else{
+                $this->modelo->setDescripcionCargo($_POST['txfDescipcionCargo']);
+                $registro = $this->modelo->editarCargo();
+                if ($registro) {
+                    $datos['mensaje'] = "Registro actializado correctamente";
+                }else{
+                    $datos['mensaje'] = "No se actualizo registro";
+                }
+                Vista::mostrar('cargos', $datos);
+            }
+        }
+    }
+    
+    public function eliminarCargo() {
+        if (!$_POST){
+            header("location: cargos");
+        }
+        else{
+            $this->modelo->setIdCargo($_POST['idCargo']);
+            $registro = $this->modelo->eliminarCargo();
+            if ($registro) {
+                $datos['mensaje'] = "Registro eliminado correctamente";
+            } else {
+                $datos['mensaje'] = "Error al eliminar registro";
+            }
+            Vista::mostrar('cargos', $datos);
+        }
     }
 
 }

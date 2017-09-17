@@ -56,15 +56,15 @@
                     </div>
                     <div class="form-group">
                         <label for="txfTelefonoFuncionario">Telefono</label>
-                        <input type="text" id="txfTelefonoFuncionario" name="txfTelefonoFuncionario" class="form-control" placeholder="Telefono: " required>
+                        <input type="number" id="txfTelefonoFuncionario" name="txfTelefonoFuncionario" class="form-control" placeholder="Telefono: " required>
                     </div>
                     <div class="form-group">
                         <label for="txfMovilFuncionario">Movil</label>
-                        <input type="text" id="txfMovilFuncionario" name="txfMovilFuncionario" class="form-control" placeholder="Movil: " required>
+                        <input type="number" id="txfMovilFuncionario" name="txfMovilFuncionario" class="form-control" placeholder="Movil: " required>
                     </div>
                     <div class="form-group">
                         <label for="txfCorreoFuncionario">Correo electronico</label>
-                        <input type="text" id="txfCorreoFuncionario" name="txfCorreoFuncionario" class="form-control" placeholder="Correo electronico: " required>
+                        <input type="email" id="txfCorreoFuncionario" name="txfCorreoFuncionario" class="form-control" placeholder="Correo electronico: " required>
                     </div>
                     <div class="form-group">
                         <label for="cmbEstadoFuncionario">Estado</label>
@@ -106,6 +106,12 @@
                 $('#cmbCentroFormacion').append('<option value="' + val.idCentroFormacion + '">' + val.nombreCentroFormacion + '</option>');
             });
         });
+    });
+    
+    $('#txfFechaNacimientoFuncionario').datetimepicker({
+        timepicker: false,
+	    format: 'Y-m-d',
+	    maxDate:'0'
     });
 
 </script>

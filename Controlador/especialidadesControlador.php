@@ -19,15 +19,20 @@ class especialidadesControlador {
     }
     
     public function insertarEspecialidad() {
-        $this->modelo->setDescripcionEspecialidad($_POST['txfDescipcionEspecialidad']);
-        $registro = $this->modelo->insertarEspecialidad();
-        if ($registro) {
-            $datos['mensaje'] = "Especialidad insertada correctamente";
-        } else {
-            $datos['mensaje'] = "No se inserto el especialidad";
+        if (!$_POST){
+            header("location: especialidades");
         }
-
-        Vista::mostrar('especialidades', $datos);
+        else{
+            $this->modelo->setDescripcionEspecialidad($_POST['txfDescipcionEspecialidad']);
+            $registro = $this->modelo->insertarEspecialidad();
+            if ($registro) {
+                $datos['mensaje'] = "Especialidad insertada correctamente";
+            } else {
+                $datos['mensaje'] = "No se inserto el especialidad";
+            }
+    
+            Vista::mostrar('especialidades', $datos);
+        }
     }
     
     public function listarEspecialidades() {
@@ -40,31 +45,41 @@ class especialidadesControlador {
     }
     
     public function editarEspecialidad() {
-        $datos['titulo'] = "Editar Especialidad";
-        $this->modelo->setIdEspecialidad($_POST['idEspecialidad']);
-        if (!isset($_POST['btnGuardar'])) {
-            $datos['especialidad'] = $this->modelo->listarIdEspecialidad();
-            Vista::mostrar('editarEspecialidad', $datos);
-        }else{
-            $this->modelo->setDescripcionEspecialidad($_POST['txfDescipcionEspecialidad']);
-            $registro = $this->modelo->editarEspecialidad();
-            if ($registro) {
-                $datos['mensaje'] = "Registro actializado correctamente";
+        if (!$_POST){
+            header("location: especialidades");
+        }
+        else{
+            $datos['titulo'] = "Editar Especialidad";
+            $this->modelo->setIdEspecialidad($_POST['idEspecialidad']);
+            if (!isset($_POST['btnGuardar'])) {
+                $datos['especialidad'] = $this->modelo->listarIdEspecialidad();
+                Vista::mostrar('editarEspecialidad', $datos);
             }else{
-                $datos['mensaje'] = "No se actualizo registro";
+                $this->modelo->setDescripcionEspecialidad($_POST['txfDescipcionEspecialidad']);
+                $registro = $this->modelo->editarEspecialidad();
+                if ($registro) {
+                    $datos['mensaje'] = "Registro actializado correctamente";
+                }else{
+                    $datos['mensaje'] = "No se actualizo registro";
+                }
+                Vista::mostrar('especialidades', $datos);
             }
-            Vista::mostrar('especialidades', $datos);
         }
     }
     
     public function eliminarEspecialidad() {
-        $this->modelo->setIdEspecialidad($_POST['idEspecialidad']);
-        $registro = $this->modelo->eliminarEspecialidad();
-        if ($registro) {
-            $datos['mensaje'] = "Registro eliminado correctamente";
-        } else {
-            $datos['mensaje'] = "Error al eliminar registro";
+        if (!$_POST){
+            header("location: especialidades");
         }
-        Vista::mostrar('especialidades', $datos);
+        else{
+            $this->modelo->setIdEspecialidad($_POST['idEspecialidad']);
+            $registro = $this->modelo->eliminarEspecialidad();
+            if ($registro) {
+                $datos['mensaje'] = "Registro eliminado correctamente";
+            } else {
+                $datos['mensaje'] = "Error al eliminar registro";
+            }
+            Vista::mostrar('especialidades', $datos);
+        }
     }
 }

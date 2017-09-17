@@ -5,7 +5,6 @@ class sesionControlador {
     private $modelo;
 
     public function __construct() {
-
         $this->modelo = Modelo::cargar('Usuarios');
     }
 
@@ -20,6 +19,7 @@ class sesionControlador {
                     session_start();
                     $_SESSION['valido'] = TRUE;
                     $_SESSION['usuario'] = $sesion[0]['nombresEmpleado']." ".$sesion[0]['apellidosEmpleado'];
+                    $_SESSION['rol'] = $sesion[0]['roles_idRol'];
                     Vista::mostrar('principal',$datos);
                 else:
                     $datos['mensaje'] = "<strong>Error: </strong>Usuario y/o Contraseña Incorrectos";

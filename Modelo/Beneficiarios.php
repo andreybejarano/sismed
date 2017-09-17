@@ -17,6 +17,9 @@ class Beneficiarios {
     private $movilBeneficiario;
     private $correoBeneficiario;
     private $estadoBeneficiario;
+    //Table Historias clinicas
+    private $estadoHistoriaClinica;
+    
     private $conexion;
 
     public function __construct() {
@@ -52,7 +55,19 @@ class Beneficiarios {
                 . "'{$this->getTelefonoBeneficiario()}', "
                 . "'{$this->getMovilBeneficiario()}', "
                 . "'{$this->getCorreoBeneficiario()}');";
-
+                
+        return $this->conexion->consultaSimple($sql);
+    }
+    
+    public function insertarHistoriaClinica (){
+        $sql ="INSERT INTO historias_clinicas(idHistoriaClinica, 
+        fechaAperturaHistoriaClinica, estadoHistoriaClinica, 
+        beneficiarios_idBeneficiario) 
+        VALUES (
+            NULL,
+            CURDATE(),
+            '{$this->getEstadoHistoriaClinica()}',
+            '{$this->getIdBeneficiario()}')";
         return $this->conexion->consultaSimple($sql);
     }
 
@@ -85,32 +100,40 @@ class Beneficiarios {
     }
 
     public function listarIdBeneficiario() {
-        $sql = "SELECT idBeneficiario, "
-                . "numeroIdentificacionBeneficiario, "
-                . "b.tipos_documentos_idTipoDocumento, "
-                . "t.tipoDocumento, "
-                . "nombresBeneficiario, "
-                . "apellidosBeneficiario, "
-                . "b.generos_idGenero, "
-                . "g.tipoGenero, "
-                . "fechaNacimientoBeneficiario, "
-                . "funcionarios_idFuncionario, "
-                . "numeroIdentificacionFuncionario, "
-                . "nombresFuncionario, "
-                . "apellidosFuncionario, "
-                . "estadoBeneficiario, "
-                . "cronicoBeneficiario, "
-                . "direccionBeneficiario, "
-                . "telefonoBeneficiario, "
-                . "movilBeneficiario, "
-                . "correoBeneficiario "
-                . "FROM beneficiarios b "
-                . "INNER JOIN tipos_documentos t ON b.tipos_documentos_idTipoDocumento = t.idTipoDocumento "
-                . "INNER JOIN generos g ON b.generos_idGenero = g.idGenero "
-                . "INNER JOIN funcionarios ON funcionarios_idFuncionario = idFuncionario "
-                . "WHERE idBeneficiario={$this->getIdBeneficiario()};";
-
+        $sql = "SELECT idBeneficiario, 
+                numeroIdentificacionBeneficiario, 
+                b.tipos_documentos_idTipoDocumento, 
+                t.tipoDocumento, 
+                nombresBeneficiario,
+                apellidosBeneficiario, 
+                b.generos_idGenero, 
+                g.tipoGenero, 
+                fechaNacimientoBeneficiario,
+                funcionarios_idFuncionario, 
+                numeroIdentificacionFuncionario, 
+                nombresFuncionario, 
+                apellidosFuncionario, 
+                estadoBeneficiario, 
+                cronicoBeneficiario, 
+                direccionBeneficiario, 
+                telefonoBeneficiario, 
+                movilBeneficiario, 
+                correoBeneficiario,
+                cf.nombreCentroFormacion
+                FROM beneficiarios b 
+                INNER JOIN tipos_documentos t ON b.tipos_documentos_idTipoDocumento = t.idTipoDocumento 
+                INNER JOIN generos g ON b.generos_idGenero = g.idGenero 
+                INNER JOIN funcionarios f ON b.funcionarios_idFuncionario = f.idFuncionario 
+                INNER JOIN centros_formacion cf ON cf.idCentroFormacion = f.centros_formacion_idCentroFormacion
+                WHERE idBeneficiario= '{$this->getIdBeneficiario()}';";
         return $this->conexion->consulta($sql);
+    }
+    
+    public function listarIdentificacionBeneficiario (){
+        $sql="SELECT * FROM beneficiarios 
+        WHERE numeroIdentificacionBeneficiario = '{$this->getIdentificacionBeneficiario()}'";
+        return $this->conexion->consulta($sql);
+        
     }
 
     public function listarDocumentoBeneficiario() {
@@ -197,6 +220,10 @@ class Beneficiarios {
         return $this->conexion->consultaSimple($sql);
     }
 
+    public function getEstadoHistoriaClinica() {
+        return $this->estadoHistoriaClinica;
+    }
+    
     public function getIdBeneficiario() {
         return $this->idBeneficiario;
     }
@@ -251,6 +278,10 @@ class Beneficiarios {
 
     public function getEstadoBeneficiario() {
         return $this->estadoBeneficiario;
+    }
+    
+    public function setEstadoHistoriaClinica ($estadoHistoriaClinica){
+        $this->estadoHistoriaClinica = $estadoHistoriaClinica;
     }
 
     public function setIdBeneficiario($idBeneficiario) {

@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="principal.php"><img src="<?php echo URL_BASE; ?>Vista/img/Logo3.png" alt="" class="img-responsive" style="max-height:108px; max-width:108px;"></a>
+            <a class="navbar-brand" href="<?php echo URL_BASE; ?>"><img src="<?php echo URL_BASE; ?>Vista/img/Logo3.png" alt="" class="img-responsive" style="max-height:108px; max-width:108px;"></a>
         </div>
         <!-- Top Menu Items -->
         <ul class="nav navbar-right top-nav letraTitulos">

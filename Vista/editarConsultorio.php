@@ -1,7 +1,7 @@
 <?php
 Vista::mostrar('plantillas/_encabezado', $datos);
 Vista::mostrar('plantillas/_menuSuperior', $datos);
-Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el rol
+Vista::mostrar('plantillas/_menuLateral');
 ?>
 
 <div id="page-wrapper" style=" min-height:30em ">
@@ -28,6 +28,12 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
                 <label for="txfNumeroConsultorio">Numero Consultorio: </label>
                 <input class="form-control" type="text" name="txfNumeroConsultorio" id="txfNumeroConsultorio" value="<?php echo $consultorio[0]['numeroConsultorio']; ?>">
             </div>
+            <div class="form-group">
+                <label for="cmbCentroMedico">Centro Medico: <?php echo $consultorio[0]['nombreCentroMedico'] ?> </label>
+                <select class="form-control" name="cmbCentroMedico" id="cmbCentroMedico" required>
+                    <option value="">Seleccione un Centro Medico</option>
+                </select>
+            </div>
             <input type="hidden" name="idConsultorio" value="<?php echo $consultorio[0]['idConsultorio']; ?>">
             <button type="submit" class="btn btn-primary" name="btnGuardar" id="btnGuardar"> GUARDAR </button>
             <button class="btn btn-primary" name="btnAtras" id="btnAtras"><a style="text-decoration: none;color:#fff" href="<?php echo URL_BASE . 'consultorios/consultorios'; ?>">ATRAS</a></button>
@@ -36,4 +42,12 @@ Vista::mostrar('plantillas/_menuLateral'); //Cambiar por controlador segun el ro
     </div><!-- /.container-fluid -->
 </div><!-- /#page-wrapper -->
 <?php Vista::mostrar('plantillas/_pie'); ?>
+<script>
+    $.post('<?php echo URL_BASE; ?>centrosMedicos/listarCentrosMedicos', function (data){
+        var datos = JSON.parse(data);
+        $.each(datos, function (i, v) {
+            $('#cmbCentroMedico').append('<option value="' + v.idCentroMedico + '">' + v.nombreCentroMedico + '</option>');
+        });
+    });
+</script>
 

@@ -40,6 +40,11 @@ class medicamentosControlador {
     public function listarMedicamentos() {
         echo json_encode($this->modelo->listarMedicamentos(), true);
     }
+    
+    public function listarIdMedicamento() {
+        $this->modelo->setIdMedicamento($_POST['idMedicamento']);
+        echo json_encode($this->modelo->listarIdMedicamento(), TRUE);
+    }
 
     public function listarNombreMedicamento() {
         $this->modelo->setNombreGenericoMedicamento($_POST['medicamento']);

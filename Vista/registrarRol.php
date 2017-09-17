@@ -10,11 +10,11 @@
                 <form method="POST" action="<?php echo URL_BASE . 'roles/insertarRol'; ?>">
                     <div class="form-group">
                         <label for="txfNombreRol">Nombre Rol</label>
-                        <input type="text" id="txfNombreRol" name="txfNombreRol" class="form-control" placeholder="Nombre Rol " required>
+                        <input type="text" id="txfNombreRol" name="txfNombreRol" class="form-control" placeholder="Nombre Rol " maxlength="20" required>
                     </div>
                     <div class="form-group">
                         <label for="txfDescipcionRol">Descripcion Rol</label>
-                        <input type="text" id="txfDescipcionRol" name="txfDescipcionRol" class="form-control" placeholder="Descripcion Rol " required>
+                        <input type="text" id="txfDescipcionRol" name="txfDescipcionRol" class="form-control" placeholder="Descripcion Rol " maxlength="45" required>
                         <span id="errorPasswors" hidden style="color: red"></span>
                     </div>
                     <button type="submit" class="btn btn-primary" name="btnRegistrarCargo" id="btnRegistrarCargo"> ENVIAR </button>
@@ -26,4 +26,3 @@
         </div>
     </div>
 </div>
-</script>

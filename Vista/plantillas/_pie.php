@@ -26,13 +26,20 @@
 
 <!-- Morris Charts JavaScript -->
 <script src="<?php echo URL_BASE; ?>Vista/js/plugins/morris/raphael.min.js"></script>
-<!--<script src="<?php echo URL_BASE; ?>Vista/js/plugins/morris/morris.min.js"></script>-->
-<!--<script src="<?php echo URL_BASE; ?>Vista/js/plugins/morris/morris-data.js"></script>-->
+
+<!-- DateTimePicker -->
+<script src="<?php echo URL_BASE; ?>Vista/js/jquery.datetimepicker.full.min.js"></script>
+
 <script type="text/javascript">
     $('#modalMensaje').modal('show');
+    
     $('#btnAtras').click(function () {
         history.back();
     });
+    
+    $.datetimepicker.setLocale('es');
 </script>
+<!--Jquery form ajax-->
+<script src="<?php echo URL_BASE; ?>Vista/js/jquery.form.js"></script>
 </body>
 </html>
